@@ -1,0 +1,40 @@
+/* MAP + MIXIM */
+
+%foto-bro { 
+    width: 100%; 
+    object-fit: cover;
+};
+
+%flex-bro { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@mixin enlace-bro($color-link, $color-hover, $color-activo) {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: map-get($color-bro, $color-link);
+    &:hover { color: map-get($color-bro, $color-hover); };
+    &.active {
+        color: map-get($color-bro, $color-activo);
+        &:hover { color: map-get($color-bro, $color-hover); };
+    };
+    @media screen and (min-width: 640px) {
+        font-size: 1rem;
+    };
+};
+
+/* @mixin icono-bro($icono-color, $icono-fondo) {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    color: map-get($color-bro, $icono-color);
+    background-color: map-get($color-bro, $icono-fondo);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    &:hover {
+        color: map-get($color-bro, $icono-fondo);
+        background-color: map-get($color-bro, $icono-color);
+    }
+} */
