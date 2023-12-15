@@ -1,45 +1,5 @@
 /* QB */
 
-.header-sticky { /* HEADER PEGAJOSO */
-    height: auto;
-    background-color: map-get($color-bro, negro);
-    @media screen and (min-width: 640px) {
-        position: sticky;
-        top: 0;
-        z-index: 1020;
-    }
-
-    .navbar-toggler { /* BOTÓN */
-        display: block;
-        margin: 0 auto;
-        background-color: transparent;
-        cursor: pointer;
-        @media screen and (min-width: 640px) {
-            display: none;
-        }
-    }
-    
-    .icono-head {
-        fill: map-get($color-bro, blanco);
-        color: map-get($color-bro, blanco);
-        width: 1em;
-        height: 1em;
-        border: none;
-        outline: none;
-    
-        @media screen and (min-width: 640px) {
-        display: none;
-    }
-    }
-    
-    .logo-bro {
-        max-height: 225px;
-        color: map-get($color-bro, blanco);
-    }
-}
-
-
-
 .productos-css { /* BUSCARLO EN EL JS */
     @extend %flex-bro;
     width: 360px;
@@ -55,27 +15,6 @@
 .link-negro { a { @include enlace-bro(negro, gris-negro, gris-medio); } } 
 .link-gris { .nav-link, .nav-link:hover, .nav-link.active { @include enlace-bro(gris-medio, blanco, gris-negro); } } 
 .link-blanco { .nav-link, .nav-link:hover, .nav-link.active { @include enlace-bro(blanco, azul, gris-medio); } }
-
-.boton-wp { /* WHATSAPP */
-    position: fixed;
-    bottom: 5vh;
-    right: 5vh;
-    background-color: map-get($color-bro, whatsapp);
-    color: map-get($color-bro, blanco);
-    border-radius: 50%;
-    padding: 2vh;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    i {
-        display: block;
-        font-size: 2em;
-    }
-    &:hover {
-        background-color: map-get($color-bro, blanco);
-        color: map-get($color-bro, whatsapp);
-    }
-}
 
 .footer-maps {
     @extend %foto-bro;
