@@ -2,7 +2,6 @@ const productosContainer = document.getElementById('productos-container'); // ID
 const carritoLista = document.getElementById('carrito-lista');
 const carrito = [];
 
-
 producto.forEach(producto => {
   const divProducto = document.createElement('div');
   divProducto.classList.add('productos-css'); // CLASS CSS
@@ -22,51 +21,38 @@ divProducto.innerHTML = `
       <button onclick="quitarDelCarrito('${producto.nombre}')">Quitar del carrito</button>
   </div>
 `;
-
   productosContainer.appendChild(divProducto);
 });
 
 
-// Función para agregar un producto al carrito
+// AGREGAR
 function agregarAlCarrito(nombre, precio) {
   const productoEnCarrito = carrito.find(item => item.nombre === nombre);
-
   if (productoEnCarrito) {
-    // Si el producto ya está en el carrito, incrementa la cantidad
     productoEnCarrito.cantidad++;
   } else {
-    // Si el producto no está en el carrito, agrégalo con cantidad 1
     carrito.push({ nombre, precio, cantidad: 1 });
   }
-
   actualizarCarrito();
 }
 
-// Función para quitar un producto del carrito
+// SACAR
 function quitarDelCarrito(nombre) {
   const productoEnCarritoIndex = carrito.findIndex(item => item.nombre === nombre);
-
   if (productoEnCarritoIndex !== -1) {
     const productoEnCarrito = carrito[productoEnCarritoIndex];
-
     if (productoEnCarrito.cantidad > 1) {
-      // Si hay más de un producto, disminuye la cantidad
       productoEnCarrito.cantidad--;
     } else {
-      // Si solo hay un producto, quítalo del carrito
       carrito.splice(productoEnCarritoIndex, 1);
     }
-
     actualizarCarrito();
   }
 }
 
-// Función para actualizar la visualización del carrito
+// ACTUALIZAR
 function actualizarCarrito() {
-  // Borra la lista actual
   carritoLista.innerHTML = '';
-
-  // Agrega los productos actualizados al carrito
   carrito.forEach(producto => {
     const liCarrito = document.createElement('li');
     liCarrito.textContent = `${producto.nombre} - $${producto.precio} x${producto.cantidad}`;
@@ -74,3 +60,19 @@ function actualizarCarrito() {
   });
 }
 
+// TOTAL
+const totalElement = document.getElementById('total');
+const confirmarPedidoBtn = document.getElementById('confirmarPedido');
+let totalCompra = 0;
+function actualizarTotal() {
+  totalElement.textContent = totalCompra.toFixed(2);
+}
+
+// CONFIRMAR
+function confirmarPedido() {
+  const resumenPedido = `\n\nTotal: $${totalCompra.toFixed(2)}`;
+  const mensajeWhatsApp = encodeURIComponent(resumenPedido);
+  const numeroWhatsApp = '5492215718347';
+  const enlaceWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensajeWhatsApp}`;
+  window.open(enlaceWhatsApp, '_blank');
+}

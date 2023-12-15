@@ -37,19 +37,6 @@ body .negrita-bro {
   flex-wrap: wrap;
 }
 
-/* @mixin icono-bro($icono-color, $icono-fondo) {
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    color: map-get($color-bro, $icono-color);
-    background-color: map-get($color-bro, $icono-fondo);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-    &:hover {
-        color: map-get($color-bro, $icono-fondo);
-        background-color: map-get($color-bro, $icono-color);
-    }
-} */
 /* QB */
 .productos-css { /* BUSCARLO EN EL JS */
   width: 360px;
