@@ -1,11 +1,14 @@
 const productosContainer = document.getElementById('productos-container');
 const carritoLista = document.getElementById('carrito-lista');
 const carritoIcono = document.getElementById('carrito-icono');
-const carrito = [];
 const totalElement = document.getElementById('total');
 const confirmarPedidoBtn = document.getElementById('confirmarPedido');
 let totalCompra = 0;
 let offcanvas; // Variable para almacenar la instancia del offcanvas
+
+// Verifica si hay datos de carrito almacenados en el localStorage
+const carritoStorage = localStorage.getItem('carrito');
+const carrito = carritoStorage ? JSON.parse(carritoStorage) : [];
 
 producto.forEach(producto => {
   const divProducto = document.createElement('div');
@@ -48,6 +51,8 @@ function agregarAlCarrito(nombre, precio) {
   }
   actualizarCarrito();
   abrirCarrito();
+  // Guarda el carrito actualizado en el localStorage
+  localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 function quitarDelCarrito(nombre) {
@@ -61,6 +66,8 @@ function quitarDelCarrito(nombre) {
       cerrarCarrito();
     }
     actualizarCarrito();
+    // Actualiza el carrito en el localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
   }
 }
 
