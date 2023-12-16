@@ -17,8 +17,10 @@ divProducto.innerHTML = `
       <p>Almacenamiento: ${producto.almacenamiento}</p>
       <p>Precauciones: ${producto.precauciones}</p>
       <p>Precio: $${producto.precio}</p>
-      <button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-      <button onclick="quitarDelCarrito('${producto.nombre}')">Quitar del carrito</button>
+  </div>
+  <div class="botonera-articulo">
+    <button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
+    <button onclick="quitarDelCarrito('${producto.nombre}')">Quitar del carrito</button>
   </div>
 `;
   productosContainer.appendChild(divProducto);
@@ -70,7 +72,7 @@ function actualizarTotal() {
 
 // CONFIRMAR
 function confirmarPedido() {
-  const resumenPedido = `\n\nTotal: $${totalCompra.toFixed(2)}`;
+  const resumenPedido = `Broders les encargo \n\nTotal: $${totalCompra.toFixed(2)}`;
   const mensajeWhatsApp = encodeURIComponent(resumenPedido);
   const numeroWhatsApp = '5492215718347';
   const enlaceWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensajeWhatsApp}`;

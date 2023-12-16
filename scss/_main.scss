@@ -1,15 +1,30 @@
 /* QB */
 
-.productos-css { /* BUSCARLO EN EL JS */
+.portada {
     @extend %flex-bro;
-    width: 360px;
-    margin: 1em;
-    padding: 1em;
-    border: 1px solid #fafafa;
-    border-radius: 7px 7px 7px 7px;
-    background-image: radial-gradient(circle, #fafafa, #f8f9f8, #f7f7f7, #f5f6f5, #f4f4f4);
-    .foto-articulo { @extend %foto-bro;}
+    justify-content: center;
+    align-items: center;
+    color: map-get($color-bro, gris-medio);
+    background-color: map-get($color-bro, negro);
+
+    h1 { font-size: 8em; }
+    height: 33vh;
+}
+
+.productos-galeria {
+    justify-content: center;
+    .productos-css { /* BUSCARLO EN EL JS */
+        @extend %flex-bro;
+        width: 360px;
+        margin: 1em;
+        padding: 1em;
+        border: 1px solid #fafafa;
+        border-radius: 7px 7px 7px 7px;
+        background-image: radial-gradient(circle, #fafafa, #f8f9f8, #f7f7f7, #f5f6f5, #f4f4f4);
+        .foto-articulo { @extend %foto-bro;}
+        .botonera {align-self: flex-end;}
     }
+}
 
 /* LINKS */
 .link-negro { a { @include enlace-bro(negro, gris-negro, gris-medio); } } 
