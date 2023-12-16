@@ -124,13 +124,22 @@ function actualizarTotal() {
 }
 
 function confirmarPedido() {
-  let resumenPedido = 'Broders, les encargo los siguientes productos:\n\n';
+  const nombre = document.getElementById('nombre').value.trim();
+  const direccion = document.getElementById('direccion').value.trim();
+
+  if (!nombre || !direccion) {
+    alert("Por favor, complete el nombre y la dirección de entrega.");
+    return;
+  }
+
+  // Resto del código para confirmar el pedido
+  let resumenPedido = `Broders, les encargo los siguientes productos:\n\n`;
 
   carrito.forEach(producto => {
     resumenPedido += `${producto.nombre} - $${producto.precio} x${producto.cantidad}\n`;
   });
 
-  resumenPedido += `\nTotal de productos: $${totalCompra.toFixed(2)}`;
+  resumenPedido += `\nNombre: ${nombre}\nDirección de entrega: ${direccion}\nTotal de productos: $${totalCompra.toFixed(2)}`;
 
   const mensajeWhatsApp = encodeURIComponent(resumenPedido);
   const numeroWhatsApp = '5492215718347';
