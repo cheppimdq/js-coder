@@ -66,11 +66,11 @@ function actualizarCarrito() {
 
   // Cambiar la clase del ícono del carrito si hay productos en el carrito
   if (carrito.length > 0) {
-    carritoIcono.classList.remove('bi-cart');
-    carritoIcono.classList.add('bi-cart-fill');
+    carritoIcono.classList.remove('bi-bag');
+    carritoIcono.classList.add('bi-bag-fill');
   } else {
-    carritoIcono.classList.remove('bi-cart-fill');
-    carritoIcono.classList.add('bi-cart');
+    carritoIcono.classList.remove('bi-bag-fill');
+    carritoIcono.classList.add('bi-bag');
   }
 }
 

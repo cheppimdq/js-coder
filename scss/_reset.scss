@@ -10,13 +10,11 @@
 body {
     h1, h2, h3, h4, h5, h6 {
         font-family: map-get($fuente-bro, titulo);
-        font-weight: bold;
     }
     p { 
-        font-size: 0.8rem;
         font-family: map-get($fuente-bro, parrafo);
         color: map-get($color-bro, negro);
     }
-    background-color: map-get($color-bro, negro);
+    background-color: map-get($color-bro, blanco);
     ;
 }

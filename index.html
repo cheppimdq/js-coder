@@ -16,19 +16,19 @@
 
     <body>
 
-        <header class="container-fluid header-pegajoso">
-            <nav class="navbar navbar-light bg-light fixed-top">
+        <header class="container-fluid sticky-top">
+            <nav class="navbar navbar-dark bg-dark fixed-top">
                 <div class="container-fluid">
 
                     <a class="navbar-brand" href="#">
-                        <img src="assets/logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top logo-quimica">Quimica Brothers
+                        <i class="bi bi-asterisk"></i> Quimica Brothers
                     </a>
 
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                    <a class="nav-link" href="https://api.whatsapp.com/send?phone=5492213562858" target="_blank">Contacto</a>
+<!--                     <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    <a class="nav-link" href="https://api.whatsapp.com/send?phone=5492213562858" target="_blank">Contacto</a> -->
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                        <i id="carrito-icono" class="bi bi-cart"></i> <!-- CARRITO QUE CAMBIAR AL LLENARSE -->
+                        <i id="carrito-icono" class="bi bi-bag"></i> <!-- CARRITO QUE CAMBIAR AL LLENARSE -->
                     </button>
 
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -49,11 +49,23 @@
             </nav>
         </header>
 
+        <aside class="container aside-delivery"> <!-- DELIVERY -->             
+            <a href="https://api.whatsapp.com/send?phone=5492213562858" target="_blank">
+                <img class="foto-delivery"  src="./assets/portada.jpg" alt="Envio sin cargo a toda la ciudad">
+            </a>
+        </aside>
+
         <main class="container">
-            <div class="portada">
-                <h1>Quimica Brothers</h1>
+            <div class="row">
+
+                <div class="portada">
+                    <h1>Quimica Brothers</h1>
+                    <!-- <h2>Ducimus dolor nesciunt quis obcaecati porro</h2> -->
+                </div>
+
+                <div class="productos-galeria" id="productos-container"> <!-- LISTADO DE PRODUCTOS --> </div> 
+
             </div>
-            <div class="row productos-galeria" id="productos-container"> <!-- LISTADO DE PRODUCTOS --> </div> 
         </main>
 
         <footer class="container-fluid">

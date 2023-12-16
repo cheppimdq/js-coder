@@ -1,34 +1,50 @@
 /* QB */
 
-.portada {
+@keyframes fadeIn {
+    from { opacity: 0;}
+    to {opacity: 1;}
+}
+
+.aside-delivery {
     @extend %flex-bro;
     justify-content: center;
     align-items: center;
-    color: map-get($color-bro, gris-medio);
+    text-align: center;
+    .foto-delivery {
+        @extend %foto-bro;
+        height: 21vh;
+        width: auto;
+        margin-top: 2.5rem;
+        animation: fadeIn 3s ease-in-out;
+    }
+    
+}
 
-    h1 { font-size: 8em; }
+.portada {
+    @extend %flex-bro;
+    justify-content: center;
+    color: map-get($color-bro, negro);
+    h1 { font-size: 7em; }
     height: 33vh;
 }
 
 .productos-galeria {
+    @extend %flex-bro;
     justify-content: center;
     .productos-css { /* BUSCARLO EN EL JS */
         @extend %flex-bro;
         width: 360px;
-        margin: 1em;
-        padding: 1em;
+        margin: 2em;
+        padding: 2em;
         border: 1px solid #fafafa;
         border-radius: 7px 7px 7px 7px;
         background-image: radial-gradient(circle, #fafafa, #f8f9f8, #f7f7f7, #f5f6f5, #f4f4f4);
         .foto-articulo { @extend %foto-bro;}
-        .botonera {align-self: flex-end;}
+        .botonera-articulo {align-self: flex-end;}
     }
 }
 
-/* LINKS */
-.link-negro { a { @include enlace-bro(negro, gris-negro, gris-medio); } } 
-.link-gris { .nav-link, .nav-link:hover, .nav-link.active { @include enlace-bro(gris-medio, blanco, gris-negro); } } 
-.link-blanco { .nav-link, .nav-link:hover, .nav-link.active { @include enlace-bro(blanco, azul, gris-medio); } }
+
 
 .footer-maps {
     @extend %foto-bro;
