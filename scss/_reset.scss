@@ -9,7 +9,6 @@
 
 body {
     h1, h2, h3, h4, h5, h6 {
-        font-size: 0.9em;
         font-family: map-get($fuente-bro, titulo);
         font-weight: bold;
     }
@@ -18,5 +17,6 @@ body {
         font-family: map-get($fuente-bro, parrafo);
         color: map-get($color-bro, negro);
     }
-    .negrita-bro { font-weight: bold; }
+    background-color: map-get($color-bro, negro);
+    ;
 }

@@ -19,14 +19,18 @@
         <header class="container-fluid header-pegajoso">
             <nav class="navbar navbar-light bg-light fixed-top">
                 <div class="container-fluid">
+
                     <a class="navbar-brand" href="#">
                         <img src="assets/logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top logo-quimica">Quimica Brothers
                     </a>
+
                     <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                    <a class="nav-link" href="https://api.whatsapp.com/send?phone=5492213562858" target="_blank">Contacto</a>                   
+                    <a class="nav-link" href="https://api.whatsapp.com/send?phone=5492213562858" target="_blank">Contacto</a>
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                        <i class="bi bi-cart4"></i>
+                        <i id="carrito-icono" class="bi bi-cart"></i> <!-- CARRITO QUE CAMBIAR AL LLENARSE -->
                     </button>
+
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                         <div class="offcanvas-header">
                             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Carrito de compras</h5>
@@ -40,15 +44,15 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </nav>
         </header>
 
-        <aside class="portada">
-            <h1>Quimica Brothers</h1>
-        </aside>
-
         <main class="container">
+            <div class="portada">
+                <h1>Quimica Brothers</h1>
+            </div>
             <div class="row productos-galeria" id="productos-container"> <!-- LISTADO DE PRODUCTOS --> </div> 
         </main>
 

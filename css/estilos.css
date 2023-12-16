@@ -11,8 +11,10 @@
   overflow-x: hidden;
 }
 
+body {
+  background-color: #212121;
+}
 body h1, body h2, body h3, body h4, body h5, body h6 {
-  font-size: 0.9em;
   font-family: "Ubuntu, sans-serif";
   font-weight: bold;
 }
@@ -20,9 +22,6 @@ body p {
   font-size: 0.8rem;
   font-family: "Ubuntu, sans-serif";
   color: #212121;
-}
-body .negrita-bro {
-  font-weight: bold;
 }
 
 /* MAP + MIXIM */
@@ -42,7 +41,6 @@ body .negrita-bro {
   justify-content: center;
   align-items: center;
   color: #8E8E8E;
-  background-color: #212121;
   height: 33vh;
 }
 .portada h1 {

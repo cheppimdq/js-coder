@@ -1,5 +1,6 @@
 const productosContainer = document.getElementById('productos-container');
 const carritoLista = document.getElementById('carrito-lista');
+const carritoIcono = document.getElementById('carrito-icono');
 const carrito = [];
 const totalElement = document.getElementById('total');
 const confirmarPedidoBtn = document.getElementById('confirmarPedido');
@@ -62,6 +63,15 @@ function actualizarCarrito() {
     totalCompra += producto.precio * producto.cantidad;
   });
   actualizarTotal();
+
+  // Cambiar la clase del ícono del carrito si hay productos en el carrito
+  if (carrito.length > 0) {
+    carritoIcono.classList.remove('bi-cart');
+    carritoIcono.classList.add('bi-cart-fill');
+  } else {
+    carritoIcono.classList.remove('bi-cart-fill');
+    carritoIcono.classList.add('bi-cart');
+  }
 }
 
 function actualizarTotal() {
@@ -75,14 +85,13 @@ function confirmarPedido() {
     resumenPedido += `${producto.nombre} - $${producto.precio} x${producto.cantidad}\n`;
   });
 
-  resumenPedido += `\nTotal de productos: $${totalCompra.toFixed(2)}`;
+  resumenPedido += `\nTotal: $${totalCompra.toFixed(2)}`;
 
   const mensajeWhatsApp = encodeURIComponent(resumenPedido);
   const numeroWhatsApp = '5492215718347';
   const enlaceWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensajeWhatsApp}`;
   window.open(enlaceWhatsApp, '_blank');
 }
-
 
 // Llama a actualizarCarrito después de inicializar el carrito con productos
 actualizarCarrito();
