@@ -66,6 +66,8 @@ body p {
 
 .portada {
   justify-content: center;
+  align-items: center;
+  text-align: center;
   color: #212121;
   height: 33vh;
 }

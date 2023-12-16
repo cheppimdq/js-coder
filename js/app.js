@@ -5,6 +5,7 @@ const carrito = [];
 const totalElement = document.getElementById('total');
 const confirmarPedidoBtn = document.getElementById('confirmarPedido');
 let totalCompra = 0;
+let offcanvas; // Variable para almacenar la instancia del offcanvas
 
 producto.forEach(producto => {
   const divProducto = document.createElement('div');
@@ -24,11 +25,19 @@ producto.forEach(producto => {
     </div>
     <div class="botonera-articulo">
       <button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-      <button onclick="quitarDelCarrito('${producto.nombre}')">Quitar del carrito</button>
     </div>
   `;
   productosContainer.appendChild(divProducto);
 });
+
+function abrirCarrito() {
+  offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasNavbar'));
+  offcanvas.show();
+}
+
+function cerrarCarrito() {
+  offcanvas.hide();
+}
 
 function agregarAlCarrito(nombre, precio) {
   const productoEnCarrito = carrito.find(item => item.nombre === nombre);
@@ -38,6 +47,7 @@ function agregarAlCarrito(nombre, precio) {
     carrito.push({ nombre, precio, cantidad: 1 });
   }
   actualizarCarrito();
+  abrirCarrito();
 }
 
 function quitarDelCarrito(nombre) {
@@ -48,7 +58,28 @@ function quitarDelCarrito(nombre) {
       productoEnCarrito.cantidad--;
     } else {
       carrito.splice(productoEnCarritoIndex, 1);
+      cerrarCarrito();
     }
+    actualizarCarrito();
+  }
+}
+
+function restarCantidad(nombre) {
+  const productoEnCarrito = carrito.find(item => item.nombre === nombre);
+  if (productoEnCarrito && productoEnCarrito.cantidad > 1) {
+    productoEnCarrito.cantidad--;
+  } else {
+    const productoEnCarritoIndex = carrito.findIndex(item => item.nombre === nombre);
+    carrito.splice(productoEnCarritoIndex, 1);
+    cerrarCarrito();
+  }
+  actualizarCarrito();
+}
+
+function sumarCantidad(nombre) {
+  const productoEnCarrito = carrito.find(item => item.nombre === nombre);
+  if (productoEnCarrito) {
+    productoEnCarrito.cantidad++;
     actualizarCarrito();
   }
 }
@@ -58,18 +89,25 @@ function actualizarCarrito() {
   totalCompra = 0;
   carrito.forEach(producto => {
     const liCarrito = document.createElement('li');
-    liCarrito.textContent = `${producto.nombre} - $${producto.precio} x${producto.cantidad}`;
+    liCarrito.innerHTML = `
+      ${producto.nombre} - $${producto.precio} 
+      <button onclick="restarCantidad('${producto.nombre}')">-</button>
+      x${producto.cantidad}
+      <button onclick="sumarCantidad('${producto.nombre}')">+</button>
+    `;
     carritoLista.appendChild(liCarrito);
     totalCompra += producto.precio * producto.cantidad;
   });
+
+  totalElement.style.display = carrito.length > 0 ? 'block' : 'none';
+
   actualizarTotal();
 
-  // Cambiar la clase del ícono del carrito si hay productos en el carrito
   if (carrito.length > 0) {
     carritoIcono.classList.remove('bi-bag');
-    carritoIcono.classList.add('bi-bag-fill');
+    carritoIcono.classList.add('bi-bag-plus');
   } else {
-    carritoIcono.classList.remove('bi-bag-fill');
+    carritoIcono.classList.remove('bi-bag-plus');
     carritoIcono.classList.add('bi-bag');
   }
 }
@@ -85,7 +123,7 @@ function confirmarPedido() {
     resumenPedido += `${producto.nombre} - $${producto.precio} x${producto.cantidad}\n`;
   });
 
-  resumenPedido += `\nTotal: $${totalCompra.toFixed(2)}`;
+  resumenPedido += `\nTotal de productos: $${totalCompra.toFixed(2)}`;
 
   const mensajeWhatsApp = encodeURIComponent(resumenPedido);
   const numeroWhatsApp = '5492215718347';
@@ -93,5 +131,4 @@ function confirmarPedido() {
   window.open(enlaceWhatsApp, '_blank');
 }
 
-// Llama a actualizarCarrito después de inicializar el carrito con productos
 actualizarCarrito();

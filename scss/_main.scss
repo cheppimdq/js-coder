@@ -23,6 +23,8 @@
 .portada {
     @extend %flex-bro;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     color: map-get($color-bro, negro);
     h1 { font-size: 7em; }
     height: 33vh;
