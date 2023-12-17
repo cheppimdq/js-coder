@@ -4,13 +4,12 @@ const carritoIcono = document.getElementById('carrito-icono');
 const totalElement = document.getElementById('total');
 const confirmarPedidoBtn = document.getElementById('confirmarPedido');
 let totalCompra = 0;
-let offcanvas; // Variable para almacenar la instancia del offcanvas
+let offcanvas; // ALMACENA OFFCANVAS
 
-// Verifica si hay datos de carrito almacenados en el localStorage
-const carritoStorage = localStorage.getItem('carrito');
+const carritoStorage = localStorage.getItem('carrito'); // REVISA ALMACENAMIENTO EN LOCALSTORAGE
 const carrito = carritoStorage ? JSON.parse(carritoStorage) : [];
 
-producto.forEach(producto => {
+producto.forEach(producto => { // AÑADE PRODUCTOS
   const divProducto = document.createElement('div');
   divProducto.classList.add('productos-css');
 
@@ -33,16 +32,18 @@ producto.forEach(producto => {
   productosContainer.appendChild(divProducto);
 });
 
-function abrirCarrito() {
+function abrirCarrito() { // ABRE CARRITO
   offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasNavbar'));
   offcanvas.show();
 }
 
-function cerrarCarrito() {
-  offcanvas.hide();
+function cerrarCarrito() { // CIERRA CARRITO
+  if (offcanvas) {
+    offcanvas.hide();
+  }
 }
 
-function agregarAlCarrito(nombre, precio) {
+function agregarAlCarrito(nombre, precio) { // AGREGA CARRITO
   const productoEnCarrito = carrito.find(item => item.nombre === nombre);
   if (productoEnCarrito) {
     productoEnCarrito.cantidad++;
@@ -51,8 +52,7 @@ function agregarAlCarrito(nombre, precio) {
   }
   actualizarCarrito();
   abrirCarrito();
-  // Guarda el carrito actualizado en el localStorage
-  localStorage.setItem('carrito', JSON.stringify(carrito));
+  localStorage.setItem('carrito', JSON.stringify(carrito)); // ACTUALIZA CARRITO LOCALSTORAGE
 }
 
 function quitarDelCarrito(nombre) {
@@ -63,15 +63,16 @@ function quitarDelCarrito(nombre) {
       productoEnCarrito.cantidad--;
     } else {
       carrito.splice(productoEnCarritoIndex, 1);
-      cerrarCarrito();
+      if (offcanvas) {
+        cerrarCarrito();
+      }
     }
     actualizarCarrito();
-    // Actualiza el carrito en el localStorage
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem('carrito', JSON.stringify(carrito)); // ACTUALIZA CARRITO LOCALSTORAGE
   }
 }
 
-function restarCantidad(nombre) {
+function restarCantidad(nombre) { // RESTA CARRITO
   const productoEnCarrito = carrito.find(item => item.nombre === nombre);
   if (productoEnCarrito && productoEnCarrito.cantidad > 1) {
     productoEnCarrito.cantidad--;
@@ -83,7 +84,7 @@ function restarCantidad(nombre) {
   actualizarCarrito();
 }
 
-function sumarCantidad(nombre) {
+function sumarCantidad(nombre) { // RUMA CARRITO
   const productoEnCarrito = carrito.find(item => item.nombre === nombre);
   if (productoEnCarrito) {
     productoEnCarrito.cantidad++;
@@ -91,7 +92,7 @@ function sumarCantidad(nombre) {
   }
 }
 
-function actualizarCarrito() {
+function actualizarCarrito() { // ACTUALIZA CARRITO
   carritoLista.innerHTML = '';
   totalCompra = 0;
   carrito.forEach(producto => {
@@ -105,11 +106,8 @@ function actualizarCarrito() {
     carritoLista.appendChild(liCarrito);
     totalCompra += producto.precio * producto.cantidad;
   });
-
   totalElement.style.display = carrito.length > 0 ? 'block' : 'none';
-
   actualizarTotal();
-
   if (carrito.length > 0) {
     carritoIcono.classList.remove('bi-bag');
     carritoIcono.classList.add('bi-bag-plus');
@@ -119,48 +117,36 @@ function actualizarCarrito() {
   }
 }
 
-function actualizarTotal() {
+function actualizarTotal() { // ACTUALIZA TOTAL
   totalElement.textContent = totalCompra.toFixed(2);
 }
 
-function confirmarPedido() {
+function confirmarPedido() { // CONFIRMA PEDIDO
   const nombre = document.getElementById('nombre').value.trim();
   const direccion = document.getElementById('direccion').value.trim();
-
   const errorNombre = document.getElementById('error-nombre');
   const errorDireccion = document.getElementById('error-direccion');
-
   errorNombre.textContent = '';
   errorDireccion.textContent = '';
-
   if (!nombre) {
     errorNombre.textContent = 'Por favor, complete el nombre.';
   }
-
   if (!direccion) {
     errorDireccion.textContent = 'Por favor, complete la dirección de entrega.';
   }
-
   if (!nombre || !direccion) {
     return;
   }
-
-  // Limpia el localStorage después de confirmar el pedido
-  localStorage.removeItem('carrito');
-
-  // Resto del código para confirmar el pedido
+  localStorage.removeItem('carrito'); // RESUMEN CONFIRMA PEDIDO Y LIMPIA LOCALSTORAGE
   let resumenPedido = `Broders, les encargo los siguientes productos:\n\n`;
-
   carrito.forEach(producto => {
     resumenPedido += `${producto.nombre} - $${producto.precio} x${producto.cantidad}\n`;
   });
-
-  resumenPedido += `\nNombre: ${nombre}\nDirección de entrega: ${direccion}\nTotal de productos: $${totalCompra.toFixed(2)}`;
-
+  resumenPedido += `\nNombre: ${nombre}\nDirección de entrega: ${direccion}\nTotal: $${totalCompra.toFixed(2)}`;
   const mensajeWhatsApp = encodeURIComponent(resumenPedido);
   const numeroWhatsApp = '5492215718347';
   const enlaceWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensajeWhatsApp}`;
   window.open(enlaceWhatsApp, '_blank');
 }
 
-actualizarCarrito();
+actualizarCarrito(); // .·.

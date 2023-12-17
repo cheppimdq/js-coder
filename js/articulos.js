@@ -11,7 +11,6 @@ const producto = [
         precauciones: 'El producto es toxico, irritante. Usar elementos de proteccion personal para su manipulacion, en caso de contacto con los ojos y piel enjuagar con abundante .',
         img: "./assets/desinfectante.jpg",
         precio: 100,
-
     },
 
     {
@@ -23,7 +22,6 @@ const producto = [
         precauciones: 'El producto puede ser irritante.',
         img: "./assets/desodorante.jpg",
         precio: 200,
-
     },
 
     {
@@ -59,6 +57,4 @@ const producto = [
         precio: 500,
     },
 
-    // { id: 6, nombre: 'Quitasarro', precio: 600 },
-
-];
+]; // .·.
