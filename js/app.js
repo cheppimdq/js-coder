@@ -127,10 +127,26 @@ function confirmarPedido() {
   const nombre = document.getElementById('nombre').value.trim();
   const direccion = document.getElementById('direccion').value.trim();
 
+  const errorNombre = document.getElementById('error-nombre');
+  const errorDireccion = document.getElementById('error-direccion');
+
+  errorNombre.textContent = '';
+  errorDireccion.textContent = '';
+
+  if (!nombre) {
+    errorNombre.textContent = 'Por favor, complete el nombre.';
+  }
+
+  if (!direccion) {
+    errorDireccion.textContent = 'Por favor, complete la dirección de entrega.';
+  }
+
   if (!nombre || !direccion) {
-    alert("Por favor, complete el nombre y la dirección de entrega.");
     return;
   }
+
+  // Limpia el localStorage después de confirmar el pedido
+  localStorage.removeItem('carrito');
 
   // Resto del código para confirmar el pedido
   let resumenPedido = `Broders, les encargo los siguientes productos:\n\n`;

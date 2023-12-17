@@ -34,13 +34,13 @@
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" id="carrito-lista"></ul>
-                        <div id="resumen">
-                            <p>Total: $<span id="total">0</span></p>
-                            <label for="nombre">Nombre:</label>
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" id="carrito-lista"> <!-- ACA SE AGREGAN LOS PRODUCTOS SELECCIONADOS --> </ul> 
+                        <p>Total: $<span id="total">0</span></p>
+                        <div id="resumen"> <!-- DEBERIA LLAMARSE DE OTRO MODO NO RESUMEN -->
                             <input type="text" id="nombre" placeholder="Ingrese su nombre">
-                            <label for="direccion">Dirección de entrega:</label>
-                            <input type="text" id="direccion" placeholder="Ingrese su dirección">
+                            <input type="text" id="direccion" placeholder="y dirección de entrega">
+                            <span id="error-nombre" class="mensaje-error"></span>
+                            <span id="error-direccion" class="mensaje-error"></span>
                             <button id="confirmarPedido" onclick="confirmarPedido()">Confirmar Pedido</button>
                         </div>
                     </div>
